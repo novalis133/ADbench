@@ -281,8 +281,8 @@ const data = [
         anomalyRatio: "medium",
         description: "A binary classification model that estimates the probability of a given data point being anomalous or normal based on input features.",
         link: "https://www.jstor.org/stable/2237932"
-    }
-
+    },
+    
     // Datasets from datasets.md
     {
         type: "dataset",
@@ -290,7 +290,7 @@ const data = [
         dataType: ["tabular"],
         size: "large",
         anomalyRatio: "medium",
-        description: "Network intrusion detection dataset, used to identify abnormal network traffic. (~3.92% anomalies).",
+        description: "Network intrusion detection dataset used to identify abnormal network traffic (~3.92% anomalies).",
         link: "https://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html"
     },
     {
@@ -329,7 +329,205 @@ const data = [
         description: "Email spam detection dataset, used for classifying spam emails (~39.4% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/spambase"
     },
-    // More datasets can be added here...
+    {
+        type: "dataset",
+        name: "Satellite",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "Remote sensing dataset for satellite image classification (~31% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Landsat+Satellite)"
+    },
+    {
+        type: "dataset",
+        name: "Shuttle",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "NASA dataset for shuttle failure classification (~7.15% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Shuttle)"
+    },
+    {
+        type: "dataset",
+        name: "Musk",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Dataset used to detect whether a molecule is 'musky' (~3.17% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Musk+(Version+2)"
+    },
+    {
+        type: "dataset",
+        name: "Mammography",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Breast cancer detection dataset (~2.32% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Mammographic+Mass"
+    },
+    {
+        type: "dataset",
+        name: "Breastw",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Wisconsin breast cancer dataset (~34.47% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)"
+    },
+    {
+        type: "dataset",
+        name: "Pima",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Diabetes detection dataset (~35% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Pima+Indians+Diabetes"
+    },
+    {
+        type: "dataset",
+        name: "Ionosphere",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Radar data for classifying ionosphere structure (~35% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Ionosphere"
+    },
+    {
+        type: "dataset",
+        name: "Letter",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Letter recognition dataset (~6.25% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Letter+Recognition"
+    },
+    {
+        type: "dataset",
+        name: "Wilt",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Remote sensing data for detecting dying trees (~5.41% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Wilt"
+    },
+    {
+        type: "dataset",
+        name: "Pageblocks",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Detects page blocks in documents (~10% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Page+Blocks+Classification"
+    },
+    {
+        type: "dataset",
+        name: "Heart",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "high",
+        description: "Heart disease detection dataset (~44% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Heart+Disease"
+    },
+    {
+        type: "dataset",
+        name: "InternetAds",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "Advertisement detection dataset (~14.32% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Internet+Advertisements"
+    },
+    {
+        type: "dataset",
+        name: "Penbased",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Handwritten pen digit dataset (~6.59% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits"
+    },
+    {
+        type: "dataset",
+        name: "Waveform",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Waveform classification dataset (~2.73% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Waveform+Database+Generator+(Version+2)"
+    },
+    {
+        type: "dataset",
+        name: "Wine",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Wine quality dataset (~5.88% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Wine"
+    },
+    {
+        type: "dataset",
+        name: "Optdigits",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Optical digit recognition dataset (~2.88% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits"
+    },
+    {
+        type: "dataset",
+        name: "Glass",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Glass classification dataset (~4.49% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Glass+Identification"
+    },
+    {
+        type: "dataset",
+        name: "Vehicle",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Vehicle classification dataset (~50% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Vehicle+Silhouettes)"
+    },
+    {
+        type: "dataset",
+        name: "Vowels",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Vowel classification dataset (~3.63% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Connectionist+Bench+%28Vowel+Recognition+-+Deterding+Data%29"
+    },
+    {
+        type: "dataset",
+        name: "Vertebral",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Vertebral column dataset (~23% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Vertebral+Column"
+    },
+    {
+        type: "dataset",
+        name: "Yeast",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "Yeast cell-cycle regulation dataset (~28.9% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Yeast"
+    },
+    {
+        type: "dataset",
+        name: "Abalone",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Predicts abalone age (~4.29% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Abalone"
+    }
+    // Add more datasets if needed...
 ];
 
 // Function to filter results based on user selection
