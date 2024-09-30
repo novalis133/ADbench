@@ -530,8 +530,9 @@ const data = [
     // Add more datasets if needed...
 ];
 
-// Function to filter and display results
 function filterResults() {
+    console.log("filterResults function called");  // Debugging statement to ensure function is called
+
     const isTabular = document.getElementById("tabular").checked;
     const isTimeSeries = document.getElementById("time-series").checked;
     const isImage = document.getElementById("image").checked;
@@ -544,8 +545,14 @@ function filterResults() {
     const sizeSelected = document.querySelector('input[name="size"]:checked');
     const anomalySelected = document.querySelector('input[name="anomaly"]:checked');
 
+    console.log({ isTabular, isTimeSeries, isImage, isText, isUnsupervised, isSemiSupervised, isSupervised }); // Debugging
+
     const results = document.getElementById("results");
     results.innerHTML = ""; // Clear previous results
+
+    // Check size and anomaly ratio selection
+    console.log("Size Selected:", sizeSelected ? sizeSelected.id : "None");
+    console.log("Anomaly Ratio Selected:", anomalySelected ? anomalySelected.id : "None");
 
     // Iterate over data and check for matches
     data.forEach(item => {
@@ -558,6 +565,7 @@ function filterResults() {
             (isImage && item.dataType.includes("image")) ||
             (isText && item.dataType.includes("text"))
         ) {
+            console.log(`Matched data type for ${item.name}`);
             show = true;
         } else {
             show = false;
@@ -570,6 +578,7 @@ function filterResults() {
                 (isSemiSupervised && item.algorithmType === "semi-supervised") ||
                 (isSupervised && item.algorithmType === "supervised")
             ) {
+                console.log(`Matched algorithm type for ${item.name}`);
                 show = show && true;
             } else {
                 show = false;
@@ -578,14 +587,17 @@ function filterResults() {
 
         // Filter by size and anomaly ratio
         if (sizeSelected && item.size !== sizeSelected.id) {
+            console.log(`Size mismatch for ${item.name}`);
             show = false;
         }
         if (anomalySelected && item.anomalyRatio !== anomalySelected.id.split("-")[0]) {
+            console.log(`Anomaly ratio mismatch for ${item.name}`);
             show = false;
         }
 
         // Display result if all conditions match
         if (show) {
+            console.log(`Displaying result for ${item.name}`);
             const div = document.createElement("div");
             div.classList.add("result");
             div.style.display = "block"; // Make sure result is visible
