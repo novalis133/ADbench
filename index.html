@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm and Dataset Selector</title>
+    <style>
+        .result { display: none; margin: 10px 0; }
+        .result h4 { margin: 0; }
+        .result p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h2>Select Criteria to Find Best Algorithms & Datasets</h2>
+
+    <!-- Filters Section -->
+    <div>
+        <h3>Data Type</h3>
+        <label><input type="checkbox" id="tabular" onclick="filterResults()"> Tabular</label>
+        <label><input type="checkbox" id="time-series" onclick="filterResults()"> Time-Series</label>
+        <label><input type="checkbox" id="image" onclick="filterResults()"> Image</label>
+        <label><input type="checkbox" id="text" onclick="filterResults()"> Text</label>
+    </div>
+
+    <div>
+        <h3>Algorithm Type</h3>
+        <label><input type="checkbox" id="unsupervised" onclick="filterResults()"> Unsupervised</label>
+        <label><input type="checkbox" id="semi-supervised" onclick="filterResults()"> Semi-supervised</label>
+        <label><input type="checkbox" id="supervised" onclick="filterResults()"> Supervised</label>
+    </div>
+
+    <div>
+        <h3>Dataset Size</h3>
+        <label><input type="radio" name="size" id="small" onclick="filterResults()"> Small</label>
+        <label><input type="radio" name="size" id="medium" onclick="filterResults()"> Medium</label>
+        <label><input type="radio" name="size" id="large" onclick="filterResults()"> Large</label>
+    </div>
+
+    <div>
+        <h3>Anomaly Ratio</h3>
+        <label><input type="radio" name="anomaly" id="low-anomaly" onclick="filterResults()"> Low (< 5%)</label>
+        <label><input type="radio" name="anomaly" id="medium-anomaly" onclick="filterResults()"> Medium (5-15%)</label>
+        <label><input type="radio" name="anomaly" id="high-anomaly" onclick="filterResults()"> High (> 15%)</label>
+    </div>
+
+    <h2>Results</h2>
+    <div id="results"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
