@@ -14,16 +14,6 @@ const data = [
     },
     {
         type: "algorithm",
-        name: "XGBoost",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Supervised, gradient boosting machine learning method for classification tasks, including anomaly detection.",
-        link: "https://dl.acm.org/doi/10.1145/2939672.2939785"
-    },
-    {
-        type: "algorithm",
         name: "LOF (Local Outlier Factor)",
         algorithmType: "unsupervised",
         dataType: ["tabular"],
@@ -52,7 +42,246 @@ const data = [
         description: "Reduces the dimensionality of the data by transforming it into principal components, identifying anomalies that do not conform to the data's structure.",
         link: "https://link.springer.com/article/10.1007/BF02289209"
     },
-    // More algorithms can be added here...
+    {
+        type: "algorithm",
+        name: "KNN (K-Nearest Neighbors)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "An unsupervised anomaly detection algorithm that calculates the distance between data points and their nearest neighbors to detect outliers.",
+        link: "https://www.sciencedirect.com/science/article/abs/pii/S0957417405002199"
+    },
+    {
+        type: "algorithm",
+        name: "COPOD (Copula-Based Outlier Detection)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Uses copula functions to model dependencies and detect outliers by calculating empirical CDF.",
+        link: "https://arxiv.org/abs/2009.09463"
+    },
+    {
+        type: "algorithm",
+        name: "ECOD (Empirical Cumulative Distribution Outlier Detection)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "A simple, non-parametric outlier detection algorithm that detects anomalies using empirical cumulative distribution functions.",
+        link: "https://arxiv.org/abs/2012.00390"
+    },
+    {
+        type: "algorithm",
+        name: "DAGMM (Deep Autoencoding Gaussian Mixture Model)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular", "image"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Combines deep autoencoders and Gaussian Mixture Models (GMMs) to perform anomaly detection by learning compact representations and capturing the underlying data distribution.",
+        link: "https://openreview.net/forum?id=BJJLHbb0-"
+    },
+    {
+        type: "algorithm",
+        name: "HBOS (Histogram-based Outlier Score)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "An unsupervised anomaly detection algorithm that uses histograms to calculate the outlier score of data points based on feature distribution.",
+        link: "https://link.springer.com/chapter/10.1007/978-3-642-24477-3_1"
+    },
+    {
+        type: "algorithm",
+        name: "MCD (Minimum Covariance Determinant)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "small",
+        anomalyRatio: "low",
+        description: "A robust statistical method that identifies anomalies by finding the minimum covariance determinant in the data distribution.",
+        link: "https://link.springer.com/article/10.1007/BF01908701"
+    },
+    {
+        type: "algorithm",
+        name: "COF (Connectivity-Based Outlier Factor)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Measures the degree of outlierness of an object based on the relative neighborhood connectivity.",
+        link: "https://dl.acm.org/doi/10.1145/775047.775053"
+    },
+    {
+        type: "algorithm",
+        name: "SOD (Subspace Outlier Detection)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "A technique for detecting outliers in high-dimensional data by examining the data's subspace structure.",
+        link: "https://link.springer.com/article/10.1007/s10115-009-0272-8"
+    },
+    {
+        type: "algorithm",
+        name: "RPCA (Robust Principal Component Analysis)",
+        algorithmType: "unsupervised",
+        dataType: ["tabular", "image"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "A robust form of PCA that decomposes data into low-rank and sparse matrices, identifying anomalies as sparse components.",
+        link: "https://statweb.stanford.edu/~candes/papers/RobustPCA.pdf"
+    },
+    {
+        type: "algorithm",
+        name: "DeepSAD (Deep Semi-Supervised Anomaly Detection)",
+        algorithmType: "semi-supervised",
+        dataType: ["tabular", "image"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Combines labeled and unlabeled data to learn compact representations of normal instances in the latent space, detecting anomalies based on deviations.",
+        link: "https://arxiv.org/abs/2002.00833"
+    },
+    {
+        type: "algorithm",
+        name: "REPEN (Representation Learning for Anomaly Detection)",
+        algorithmType: "semi-supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "Learns low-dimensional representations for anomaly detection by minimizing intra-class distances and maximizing inter-class distances.",
+        link: "https://www.ijcai.org/proceedings/2017/0221.pdf"
+    },
+    {
+        type: "algorithm",
+        name: "GANomaly (Generative Adversarial Network for Anomaly Detection)",
+        algorithmType: "semi-supervised",
+        dataType: ["image", "tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "A semi-supervised GAN-based model that generates normal data and detects anomalies as points that cannot be well-reconstructed by the generator.",
+        link: "https://arxiv.org/abs/1805.06725"
+    },
+    {
+        type: "algorithm",
+        name: "DevNet (Deep Anomaly Detection with Deviations)",
+        algorithmType: "semi-supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Detects deviations from normal data patterns by using a neural network that is trained on both labeled and unlabeled data.",
+        link: "https://arxiv.org/abs/2002.12718"
+    },
+    {
+        type: "algorithm",
+        name: "RDP (Robust Deep PCA)",
+        algorithmType: "semi-supervised",
+        dataType: ["tabular", "image"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "Combines deep learning with PCA to create robust representations of data for detecting anomalies in noisy or high-dimensional datasets.",
+        link: "https://arxiv.org/abs/1703.08383"
+    },
+    {
+        type: "algorithm",
+        name: "SO-GAAL (Single-Objective Generative Adversarial Active Learning)",
+        algorithmType: "semi-supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "A GAN-based model that generates synthetic anomalies and uses active learning to detect real anomalies from a small amount of labeled data.",
+        link: "https://www.aaai.org/ojs/index.php/AAAI/article/view/4263"
+    },
+    {
+        type: "algorithm",
+        name: "XGBoost",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "A gradient boosting framework for detecting anomalies in supervised settings, widely used for tabular data.",
+        link: "https://dl.acm.org/doi/10.1145/2939672.2939785"
+    },
+    {
+        type: "algorithm",
+        name: "LightGBM",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "A faster and more efficient version of gradient boosting, often used for large-scale datasets.",
+        link: "https://dl.acm.org/doi/10.5555/3294996.3295074"
+    },
+    {
+        type: "algorithm",
+        name: "CatBoost",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "A gradient boosting method that handles categorical features effectively for anomaly detection tasks.",
+        link: "https://arxiv.org/abs/1706.09516"
+    },
+    {
+        type: "algorithm",
+        name: "Random Forest",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "An ensemble learning method that uses multiple decision trees to improve the accuracy of anomaly detection.",
+        link: "https://link.springer.com/article/10.1023/A:1010933404324"
+    },
+    {
+        type: "algorithm",
+        name: "MLP (Multilayer Perceptron)",
+        algorithmType: "supervised",
+        dataType: ["tabular", "image"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "A simple feedforward neural network model used for binary classification tasks, including anomaly detection.",
+        link: "https://www.nature.com/articles/323533a0"
+    },
+    {
+        type: "algorithm",
+        name: "ResNet",
+        algorithmType: "supervised",
+        dataType: ["image"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "A deep residual network model used for image classification and anomaly detection tasks, known for its deep architecture.",
+        link: "https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+    },
+    {
+        type: "algorithm",
+        name: "FTTransformer",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "A transformer-based model designed for anomaly detection in high-dimensional tabular data.",
+        link: "https://arxiv.org/abs/2106.11959"
+    },
+    {
+        type: "algorithm",
+        name: "Naive Bayes",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "small",
+        anomalyRatio: "low",
+        description: "A probabilistic classifier that uses Bayes' theorem with strong (naive) independence assumptions between the features.",
+        link: "https://dl.acm.org/doi/10.5555/599619.599635"
+    },
+    {
+        type: "algorithm",
+        name: "Logistic Regression",
+        algorithmType: "supervised",
+        dataType: ["tabular"],
+        size: "small",
+        anomalyRatio: "medium",
+        description: "A binary classification model that estimates the probability of a given data point being anomalous or normal based on input features.",
+        link: "https://www.jstor.org/stable/2237932"
+    }
 
     // Datasets from datasets.md
     {
