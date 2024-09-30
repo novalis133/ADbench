@@ -530,7 +530,7 @@ const data = [
     // Add more datasets if needed...
 ];
 
-// Function to filter results based on user selection
+// Function to filter and display results
 function filterResults() {
     const isTabular = document.getElementById("tabular").checked;
     const isTimeSeries = document.getElementById("time-series").checked;
@@ -545,12 +545,13 @@ function filterResults() {
     const anomalySelected = document.querySelector('input[name="anomaly"]:checked');
 
     const results = document.getElementById("results");
-    results.innerHTML = "";
+    results.innerHTML = ""; // Clear previous results
 
+    // Iterate over data and check for matches
     data.forEach(item => {
-        let show = false;
+        let show = true;
 
-        // Filter based on data type
+        // Filter by data type (tabular, time-series, image, text)
         if (
             (isTabular && item.dataType.includes("tabular")) ||
             (isTimeSeries && item.dataType.includes("time-series")) ||
@@ -558,9 +559,11 @@ function filterResults() {
             (isText && item.dataType.includes("text"))
         ) {
             show = true;
+        } else {
+            show = false;
         }
 
-        // Filter based on algorithm type (if it's an algorithm)
+        // Filter by algorithm type if it's an algorithm
         if (item.type === "algorithm") {
             if (
                 (isUnsupervised && item.algorithmType === "unsupervised") ||
@@ -573,20 +576,24 @@ function filterResults() {
             }
         }
 
-        // Filter based on dataset size
+        // Filter by size and anomaly ratio
         if (sizeSelected && item.size !== sizeSelected.id) {
             show = false;
         }
-
-        // Filter based on anomaly ratio
         if (anomalySelected && item.anomalyRatio !== anomalySelected.id.split("-")[0]) {
             show = false;
         }
 
+        // Display result if all conditions match
         if (show) {
             const div = document.createElement("div");
             div.classList.add("result");
-            div.innerHTML = `<h4>${item.name}</h4><p>${item.description}</p><a href="${item.link}" target="_blank">Learn more</a>`;
+            div.style.display = "block"; // Make sure result is visible
+            div.innerHTML = `
+                <h4>${item.name}</h4>
+                <p>${item.description}</p>
+                <a href="${item.link}" target="_blank">Learn more</a>
+            `;
             results.appendChild(div);
         }
     });
