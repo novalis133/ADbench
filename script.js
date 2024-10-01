@@ -611,6 +611,23 @@ const data = [
     // Add more datasets if needed...
 ];
 
+function filterResults() {
+    const results = document.getElementById('results');
+    results.innerHTML = ''; // Clear previous results
+
+    // Filter selections
+    const isTabular = document.getElementById("tabular").checked;
+    const isTimeSeries = document.getElementById("time-series").checked;
+    const isImage = document.getElementById("image").checked;
+    const isText = document.getElementById("text").checked;
+
+    const isUnsupervised = document.getElementById("unsupervised").checked;
+    const isSemiSupervised = document.getElementById("semi-supervised").checked;
+    const isSupervised = document.getElementById("supervised").checked;
+
+    const sizeSelected = document.querySelector('input[name="size"]:checked');
+    const anomalySelected = document.querySelector('input[name="anomaly"]:checked');
+
 // Loop through each item in the data array and apply filters
     data.forEach(item => {
         let show = true;
