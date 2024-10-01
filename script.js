@@ -628,7 +628,8 @@ function filterResults() {
     const sizeSelected = document.querySelector('input[name="size"]:checked');
     const anomalySelected = document.querySelector('input[name="anomaly"]:checked');
 
-// Loop through each item in the data array and apply filters
+
+    // Loop through each item in the data array and apply filters
     data.forEach(item => {
         let show = true;
 
