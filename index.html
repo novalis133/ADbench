@@ -47,6 +47,11 @@
         .result a:hover {
             text-decoration: underline;
         }
+        .section-title {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -82,9 +87,14 @@
         <label><input type="radio" name="anomaly" id="high-anomaly" onclick="filterResults()"> High (> 15%)</label>
     </fieldset>
 
-    <h2>Results</h2>
-    <div id="results"></div>
+    <!-- Results Section -->
+    <h2 class="section-title">Algorithm Results</h2>
+    <div id="algorithm-results"></div>
 
+    <h2 class="section-title">Dataset Results</h2>
+    <div id="dataset-results"></div>
+
+    <!-- Link to the external script file -->
     <script src="script.js"></script>
 </body>
 </html>
