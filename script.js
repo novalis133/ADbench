@@ -611,43 +611,50 @@ const data = [
     // Add more datasets if needed...
 ];
 
-function filterResults() {
-    const results = document.getElementById('results');
-    results.innerHTML = ''; // Clear previous results
-
-    const isTabular = document.getElementById("tabular").checked;
-    const isTimeSeries = document.getElementById("time-series").checked;
-    const isImage = document.getElementById("image").checked;
-    const isText = document.getElementById("text").checked;
-
-    // Example data - Replace this with your actual data
-    const data = [
-        {
-            name: "Algorithm 1",
-            type: "algorithm",
-            dataType: ["tabular"],
-            description: "Algorithm for tabular data.",
-            link: "#"
-        },
-        {
-            name: "Algorithm 2",
-            type: "algorithm",
-            dataType: ["time-series"],
-            description: "Algorithm for time-series data.",
-            link: "#"
-        }
-    ];
-
+// Loop through each item in the data array and apply filters
     data.forEach(item => {
+        let show = true;
+
+        // Filter by data type
         if (
             (isTabular && item.dataType.includes("tabular")) ||
             (isTimeSeries && item.dataType.includes("time-series")) ||
             (isImage && item.dataType.includes("image")) ||
             (isText && item.dataType.includes("text"))
         ) {
+            show = true;
+        } else {
+            show = false;
+        }
+
+        // Filter by algorithm type (if it's an algorithm)
+        if (item.type === "algorithm") {
+            if (
+                (isUnsupervised && item.algorithmType === "unsupervised") ||
+                (isSemiSupervised && item.algorithmType === "semi-supervised") ||
+                (isSupervised && item.algorithmType === "supervised")
+            ) {
+                show = show && true;
+            } else {
+                show = false;
+            }
+        }
+
+        // Filter by size
+        if (sizeSelected && item.size !== sizeSelected.id) {
+            show = false;
+        }
+
+        // Filter by anomaly ratio
+        if (anomalySelected && item.anomalyRatio !== anomalySelected.id.split("-")[0]) {
+            show = false;
+        }
+
+        // If all conditions match, display the result
+        if (show) {
             const div = document.createElement("div");
             div.classList.add("result");
-            div.style.display = "block"; // Make it visible
+            div.style.display = "block"; // Make sure result is visible
             div.innerHTML = `<h4>${item.name}</h4><p>${item.description}</p><a href="${item.link}" target="_blank">Learn more</a>`;
             results.appendChild(div);
         }
