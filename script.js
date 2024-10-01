@@ -1,6 +1,6 @@
 // Full data from both `algorithms.md` and `datasets.md`
 // Data for algorithms and datasets is structured below
-const data = [
+const algorithms = [
     // Algorithms from algorithms.md
     // 1. Unsupervised Anomaly Detection Algorithms
     
@@ -248,7 +248,9 @@ const data = [
         link: "https://doi.org/10.1111/j.2517-6161.1958.tb00292.x",
         citation: "Cox, D. R. (1958). The regression analysis of binary sequences."
     },
+];
     
+const datasets = [
     // Datasets from datasets.md
         // 1. Public Benchmark Datasets
     {
@@ -668,10 +670,12 @@ const data = [
 ];
 
 function filterResults() {
-    const results = document.getElementById('results');
-    results.innerHTML = ''; // Clear previous results
+    const algorithmResults = document.getElementById('algorithm-results');
+    const datasetResults = document.getElementById('dataset-results');
+    algorithmResults.innerHTML = ''; // Clear previous algorithm results
+    datasetResults.innerHTML = ''; // Clear previous dataset results
 
-    // Filter selections
+    // Get filter values
     const isTabular = document.getElementById("tabular").checked;
     const isTimeSeries = document.getElementById("time-series").checked;
     const isImage = document.getElementById("image").checked;
@@ -684,53 +688,49 @@ function filterResults() {
     const sizeSelected = document.querySelector('input[name="size"]:checked');
     const anomalySelected = document.querySelector('input[name="anomaly"]:checked');
 
+    // Filter algorithms based on category
+    const filteredAlgorithms = algorithms.filter(alg => {
+        return (
+            (isUnsupervised && alg.category === "Unsupervised") ||
+            (isSemiSupervised && alg.category === "Semi-supervised") ||
+            (isSupervised && alg.category === "Supervised")
+        );
+    });
 
-    // Loop through each item in the data array and apply filters
-    data.forEach(item => {
-        let show = true;
+    // Filter datasets based on dataType, size, and anomaly ratio
+    const filteredDatasets = datasets.filter(dataset => {
+        const matchesDataType =
+            (isTabular && dataset.dataType.includes("tabular")) ||
+            (isTimeSeries && dataset.dataType.includes("time-series")) ||
+            (isImage && dataset.dataType.includes("image")) ||
+            (isText && dataset.dataType.includes("text"));
 
-        // Filter by data type
-        if (
-            (isTabular && item.dataType.includes("tabular")) ||
-            (isTimeSeries && item.dataType.includes("time-series")) ||
-            (isImage && item.dataType.includes("image")) ||
-            (isText && item.dataType.includes("text"))
-        ) {
-            show = true;
-        } else {
-            show = false;
-        }
+        const matchesSize = !sizeSelected || dataset.size === sizeSelected.id;
+        const matchesAnomaly = !anomalySelected || dataset.anomalyRatio === anomalySelected.id.split("-")[0];
 
-        // Filter by algorithm type (if it's an algorithm)
-        if (item.type === "algorithm") {
-            if (
-                (isUnsupervised && item.algorithmType === "unsupervised") ||
-                (isSemiSupervised && item.algorithmType === "semi-supervised") ||
-                (isSupervised && item.algorithmType === "supervised")
-            ) {
-                show = show && true;
-            } else {
-                show = false;
-            }
-        }
+        return matchesDataType && matchesSize && matchesAnomaly;
+    });
 
-        // Filter by size
-        if (sizeSelected && item.size !== sizeSelected.id) {
-            show = false;
-        }
+    // Display algorithms in the algorithm-results section
+    filteredAlgorithms.forEach(alg => {
+        const div = document.createElement("div");
+        div.classList.add("result");
+        div.style.display = "block";
+        div.innerHTML = `<h4>${alg.name}</h4>
+                        <p>${alg.description}</p>
+                        <p><strong>Use Cases:</strong> ${alg.useCases.join(", ")}</p>
+                        <a href="${alg.link}" target="_blank">Learn more</a>`;
+        algorithmResults.appendChild(div);
+    });
 
-        // Filter by anomaly ratio
-        if (anomalySelected && item.anomalyRatio !== anomalySelected.id.split("-")[0]) {
-            show = false;
-        }
-
-        // If all conditions match, display the result
-        if (show) {
-            const div = document.createElement("div");
-            div.classList.add("result");
-            div.style.display = "block"; // Make sure result is visible
-            div.innerHTML = `<h4>${item.name}</h4><p>${item.description}</p><a href="${item.link}" target="_blank">Learn more</a>`;
-            results.appendChild(div);
-        }
+    // Display datasets in the dataset-results section
+    filteredDatasets.forEach(dataset => {
+        const div = document.createElement("div");
+        div.classList.add("result");
+        div.style.display = "block";
+        div.innerHTML = `<h4>${dataset.name}</h4>
+                        <p>${dataset.description}</p>
+                        <a href="${dataset.link}" target="_blank">Learn more</a>`;
+        datasetResults.appendChild(div);
     });
 }
