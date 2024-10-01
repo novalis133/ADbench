@@ -1,399 +1,258 @@
 // Full data from both `algorithms.md` and `datasets.md`
 // Data for algorithms and datasets is structured below
 const data = [
+    // Algorithms from algorithms.md
+    // 1. Unsupervised Anomaly Detection Algorithms
+    
     {
-        type: "algorithm",
-        name: "Isolation Forest",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Tree-based method for detecting anomalies by isolating points in the data space.",
-        link: "https://link.springer.com/article/10.1007/s10115-008-0116-6"
+        category: "Unsupervised",
+        name: "Isolation Forest (IForest)",
+        description: "Isolates anomalies by recursively partitioning the data using randomly selected features and thresholds.",
+        useCases: ["Fraud detection", "Network intrusion detection", "Cybersecurity"],
+        link: "https://ieeexplore.ieee.org/document/4781136",
+        citation: "Liu, F. T., Ting, K. M., & Zhou, Z. H. (2008). Isolation forest. Data Mining and Knowledge Discovery, 20(2), 272-292."
     },
     {
-        type: "algorithm",
+        category: "Unsupervised",
         name: "LOF (Local Outlier Factor)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "small",
-        anomalyRatio: "low",
-        description: "Density-based algorithm identifying local outliers by comparing the local density of data points.",
-        link: "https://dl.acm.org/doi/10.1145/342009.335388"
+        description: "Detects outliers by comparing the local density of a point to that of its neighbors.",
+        useCases: ["Intrusion detection", "Healthcare anomaly detection", "Fraud detection"],
+        link: "https://dl.acm.org/doi/10.1145/342009.335388",
+        citation: "Breunig, M. M., Kriegel, H.-P., Ng, R. T., & Sander, J. (2000). LOF: Identifying density-based local outliers."
     },
     {
-        type: "algorithm",
-        name: "DeepSVDD",
-        algorithmType: "unsupervised",
-        dataType: ["tabular", "image"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "Deep neural network extension of SVDD for mapping data into a compact latent space.",
-        link: "https://arxiv.org/abs/1802.06822"
-    },
-    {
-        type: "algorithm",
-        name: "PCA (Principal Component Analysis)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular", "image"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Reduces the dimensionality of the data by transforming it into principal components.",
-        link: "https://link.springer.com/article/10.1007/BF02289209"
-    },
-    {
-        type: "algorithm",
+        category: "Unsupervised",
         name: "KNN (K-Nearest Neighbors)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Calculates the distance between data points and their nearest neighbors to detect outliers.",
-        link: "https://www.sciencedirect.com/science/article/abs/pii/S0957417405002199"
+        description: "Identifies outliers by measuring the distance between a point and its k-nearest neighbors.",
+        useCases: ["Network intrusion detection", "Fraud detection"],
+        link: "https://www.researchgate.net/profile/Clara-Pizzuti/publication/220699183_Fast_Outlier_Detection_in_High_Dimensional_Spaces/links/542ea6a60cf27e39fa9635c6/Fast-Outlier-Detection-in-High-Dimensional-Spaces.pdf",
+        citation: "Angiulli, F., & Pizzuti, C. (2006). Fast outlier detection in high dimensional spaces."
     },
     {
-        type: "algorithm",
+        category: "Unsupervised",
         name: "COPOD (Copula-Based Outlier Detection)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Uses copula functions to model dependencies and detect outliers by calculating empirical CDF.",
-        link: "https://arxiv.org/abs/2009.09463"
+        description: "Uses copula theory to model the joint distribution of data and detect anomalies based on the joint cumulative distribution function.",
+        useCases: ["High-dimensional anomaly detection", "Financial anomaly detection"],
+        link: "https://ieeexplore.ieee.org/document/9338429",
+        citation: "Li, Y., Zhao, Z., & Botta, N. (2020). COPOD: Copula-based outlier detection."
     },
     {
-        type: "algorithm",
-        name: "ECOD (Empirical Cumulative Distribution Outlier Detection)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "low",
-        description: "Non-parametric outlier detection algorithm based on empirical cumulative distribution functions.",
-        link: "https://arxiv.org/abs/2012.00390"
+        category: "Unsupervised",
+        name: "ECOD (Empirical CDF-Based Outlier Detection)",
+        description: "Non-parametric outlier detection method that uses empirical cumulative distribution functions.",
+        useCases: ["Large-scale anomaly detection", "Real-time sensor monitoring"],
+        link: "https://arxiv.org/abs/2201.00382",
+        citation: "Li, Z., Zhao, Z., Botta, N., Ifrim, G., & Stolfo, S. (2020). ECOD: Unsupervised outlier detection using empirical cumulative distribution functions."
     },
     {
-        type: "algorithm",
+        category: "Unsupervised",
+        name: "DeepSVDD (Deep Support Vector Data Description)",
+        description: "Maps data into a latent space where normal data points are compact, and anomalies lie outside the compact region.",
+        useCases: ["Network intrusion detection", "Image anomaly detection"],
+        link: "https://ml.cs.uni-kl.de/publications/2018/deep-svdd.pdf",
+        citation: "Ruff, L., Vandermeulen, R. A., Görnitz, N., Deecke, L., Siddiqui, S. A., Binder, A., Müller, K. R., & Kloft, M. (2018). Deep one-class classification."
+    },
+    {
+        category: "Unsupervised",
         name: "DAGMM (Deep Autoencoding Gaussian Mixture Model)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular", "image"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "Combines deep autoencoders and Gaussian Mixture Models to detect anomalies.",
-        link: "https://openreview.net/forum?id=BJJLHbb0-"
+        description: "Combines an autoencoder for dimensionality reduction with a Gaussian Mixture Model (GMM) for probabilistic modeling.",
+        useCases: ["Industrial monitoring", "Fraud detection", "Financial data anomaly detection"],
+        link: "https://openreview.net/forum?id=BJJLHbb0-",
+        citation: "Zong, B., Song, Q., Qi, Y., Huang, X., & Dhillon, I. (2018). Deep autoencoding Gaussian mixture model for unsupervised anomaly detection."
     },
     {
-        type: "algorithm",
-        name: "HBOS (Histogram-based Outlier Score)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Uses histograms to calculate outlier score of data points based on feature distribution.",
-        link: "https://link.springer.com/chapter/10.1007/978-3-642-24477-3_1"
+        category: "Unsupervised",
+        name: "Histogram-Based Outlier Score (HBOS)",
+        description: "Uses histograms to model feature distributions and detect outliers.",
+        useCases: ["Anomaly detection in high-dimensional data"],
+        link: "https://www.goldiges.de/publications/HBOS-KI-2012.pdf",
+        citation: "Goldstein, M., & Dengel, A. (2012). Histogram-based outlier score (HBOS)."
     },
     {
-        type: "algorithm",
-        name: "MCD (Minimum Covariance Determinant)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "small",
-        anomalyRatio: "low",
-        description: "Identifies anomalies by finding the minimum covariance determinant in the data distribution.",
-        link: "https://link.springer.com/article/10.1007/BF01908701"
+        category: "Unsupervised",
+        name: "Principal Component Analysis (PCA)",
+        description: "Detects anomalies by finding points that cannot be well represented by the principal components.",
+        useCases: ["Dimensionality reduction for anomaly detection"],
+        link: "https://www.tandfonline.com/doi/abs/10.1080/14786440109462720",
+        citation: "Pearson, K. (1901). On lines and planes of closest fit to systems of points in space."
     },
     {
-        type: "algorithm",
-        name: "COF (Connectivity-Based Outlier Factor)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Measures the degree of outlierness of an object based on the relative neighborhood connectivity.",
-        link: "https://dl.acm.org/doi/10.1145/775047.775053"
+        category: "Unsupervised",
+        name: "Minimum Covariance Determinant (MCD)",
+        description: "Fits an ellipse to the data distribution and detects outliers.",
+        useCases: ["High-dimensional anomaly detection"],
+        link: "https://www.jstor.org/stable/2288718",
+        citation: "Rousseeuw, P. J. (1984). Least median of squares regression."
     },
     {
-        type: "algorithm",
-        name: "SOD (Subspace Outlier Detection)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Detects outliers in high-dimensional data by examining the subspace structure.",
-        link: "https://link.springer.com/article/10.1007/s10115-009-0272-8"
+        category: "Unsupervised",
+        name: "Connectivity-Based Outlier Factor (COF)",
+        description: "Measures isolation by calculating how well-connected a point is to its neighbors.",
+        useCases: ["Low-density outlier detection"],
+        link: "http://www.cse.cuhk.edu.hk/~adafu/Pub/pakdd02.pdf",
+        citation: "Tang, J., Chen, Z., Fu, A. W.-C., & Cheung, D. W. (2002). Enhancing effectiveness of outlier detections for low-density patterns."
     },
     {
-        type: "algorithm",
-        name: "RPCA (Robust Principal Component Analysis)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular", "image"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Decomposes data into low-rank and sparse matrices to detect anomalies as sparse components.",
-        link: "https://statweb.stanford.edu/~candes/papers/RobustPCA.pdf"
+        category: "Unsupervised",
+        name: "Subspace Outlier Detection (SOD)",
+        description: "Identifies points that are isolated in some subspace of the data.",
+        useCases: ["High-dimensional data anomaly detection"],
+        link: "https://www.dbs.ifi.lmu.de/Publikationen/Papers/pakdd09_SOD.pdf",
+        citation: "Kriegel, H.-P., Kröger, P., Schubert, E., & Zimek, A. (2009). Outlier detection in axis-parallel subspaces of high-dimensional data."
     },
     {
-        type: "algorithm",
-        name: "DeepSAD (Deep Semi-Supervised Anomaly Detection)",
-        algorithmType: "semi-supervised",
-        dataType: ["tabular", "image"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "Combines labeled and unlabeled data to learn compact representations of normal instances.",
-        link: "https://arxiv.org/abs/2002.00833"
+        category: "Unsupervised",
+        name: "Feature Bagging (FB)",
+        description: "Uses bagging techniques with different feature subsets to detect anomalies.",
+        useCases: ["Ensemble-based anomaly detection"],
+        link: "https://dl.acm.org/doi/10.1145/1081870.1081891",
+        citation: "Lazarevic, A., & Kumar, V. (2005). Feature bagging for outlier detection."
     },
     {
-        type: "algorithm",
-        name: "REPEN (Representation Learning for Anomaly Detection)",
-        algorithmType: "semi-supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Learns low-dimensional representations for anomaly detection by minimizing intra-class distances.",
-        link: "https://www.ijcai.org/proceedings/2017/0221.pdf"
+        category: "Unsupervised",
+        name: "Robust Principal Component Analysis (RPCA)",
+        description: "Decomposes data into a low-rank component and a sparse component, with anomalies in the sparse component.",
+        useCases: ["Anomaly detection in noisy datasets"],
+        link: "https://dl.acm.org/doi/10.1145/1970392.1970395",
+        citation: "Candès, E. J., Li, X., Ma, Y., & Wright, J. (2010). Robust principal component analysis."
+    },
+
+    // Semi-supervised Anomaly Detection Algorithms
+    {
+        category: "Semi-supervised",
+        name: "DeepSAD (Deep Semi-supervised Anomaly Detection)",
+        description: "Combines labeled and unlabeled data for semi-supervised anomaly detection by learning compact representations of normal data.",
+        useCases: ["Fraud detection", "Medical anomaly detection", "Network security"],
+        link: "https://ml.cs.uni-kl.de/publications/2020/deep_semi_supervised_anomaly_detection.pdf",
+        citation: "Ruff, L., Kauffmann, J. R., Vandermeulen, R., Görnitz, N., Deecke, L., & Kloft, M. (2020). Deep semi-supervised anomaly detection."
     },
     {
-        type: "algorithm",
-        name: "GANomaly (Generative Adversarial Network for Anomaly Detection)",
-        algorithmType: "semi-supervised",
-        dataType: ["image", "tabular"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "A GAN-based model that generates normal data and detects anomalies by reconstruction errors.",
-        link: "https://arxiv.org/abs/1805.06725"
+        category: "Semi-supervised",
+        name: "REPEN (Representation Learning-based Anomaly Detection)",
+        description: "Learns a low-dimensional representation of the data and detects anomalies by measuring distances in this learned space.",
+        useCases: ["Financial fraud detection", "Sensor data anomaly detection"],
+        link: "https://arxiv.org/pdf/1806.04808",
+        citation: "Pang, G., Cao, L., Chen, L., & Liu, H. (2017). Learning representations of ultrahigh-dimensional data for random distance-based outlier detection."
     },
     {
-        type: "algorithm",
+        category: "Semi-supervised",
+        name: "GANomaly (Deep Generative Adversarial Networks for Anomaly Detection)",
+        description: "Uses GANs to generate synthetic normal data, with anomalies detected as poorly reconstructed data points.",
+        useCases: ["Industrial anomaly detection", "Fraud detection"],
+        link: "https://arxiv.org/abs/1805.06725",
+        citation: "Akcay, S., Atapour-Abarghouei, A., & Breckon, T. P. (2018). GANomaly: Semi-supervised anomaly detection via adversarial training."
+    },
+    {
+        category: "Semi-supervised",
         name: "DevNet (Deep Anomaly Detection with Deviations)",
-        algorithmType: "semi-supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "Detects deviations from normal data patterns by using a neural network trained on labeled data.",
-        link: "https://arxiv.org/abs/2002.12718"
+        description: "Learns deviations from normal data using limited labeled anomalies and a large number of unlabeled data points.",
+        useCases: ["Fraud detection", "Network security anomaly detection"],
+        link: "https://arxiv.org/abs/1911.08623",
+        citation: "Pang, G., Shen, C., Cao, L., van den Hengel, A., & Liu, W. (2020). Deep anomaly detection with deviation networks."
     },
     {
-        type: "algorithm",
-        name: "XGBoost",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Gradient boosting framework widely used for tabular data in supervised settings.",
-        link: "https://dl.acm.org/doi/10.1145/2939672.2939785"
-    },
-    {
-        type: "algorithm",
-        name: "LightGBM",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Efficient version of gradient boosting, often used for large-scale datasets.",
-        link: "https://dl.acm.org/doi/10.5555/3294996.3295074"
-    },
-    {
-        type: "algorithm",
-        name: "CatBoost",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Gradient boosting method handling categorical features effectively for anomaly detection.",
-        link: "https://arxiv.org/abs/1706.09516"
-    },
-    {
-        type: "algorithm",
-        name: "Random Forest",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Ensemble learning method using multiple decision trees for anomaly detection.",
-        link: "https://link.springer.com/article/10.1023/A:1010933404324"
-    },
-    {
-        type: "algorithm",
-        name: "MLP (Multilayer Perceptron)",
-        algorithmType: "supervised",
-        dataType: ["tabular", "image"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Feedforward neural network model used for binary classification and anomaly detection.",
-        link: "https://www.nature.com/articles/323533a0"
-    },
-    {
-        type: "algorithm",
-        name: "ResNet",
-        algorithmType: "supervised",
-        dataType: ["image"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Deep residual network used for image classification and anomaly detection tasks.",
-        link: "https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
-    },
-    {
-        type: "algorithm",
-        name: "FTTransformer",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Transformer-based model designed for anomaly detection in high-dimensional tabular data.",
-        link: "https://arxiv.org/abs/2106.11959"
-    },
-    {
-        type: "algorithm",
-        name: "Naive Bayes",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "small",
-        anomalyRatio: "low",
-        description: "A probabilistic classifier using Bayes' theorem with strong independence assumptions between the features.",
-        link: "https://dl.acm.org/doi/10.5555/599619.599635"
-    },
-    {
-        type: "algorithm",
-        name: "Logistic Regression",
-        algorithmType: "supervised",
-        dataType: ["tabular"],
-        size: "small",
-        anomalyRatio: "medium",
-        description: "Binary classification model estimating the probability of a data point being anomalous based on input features.",
-        link: "https://www.jstor.org/stable/2237932"
-    },
-    {
-        type: "algorithm",
-        name: "SO-GAAL (Single-Objective Generative Adversarial Active Learning)",
-        algorithmType: "semi-supervised",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "A GAN-based model generating synthetic anomalies and using active learning to detect real anomalies.",
-        link: "https://www.aaai.org/ojs/index.php/AAAI/article/view/4263"
-    },
-    {
-        type: "algorithm",
+        category: "Semi-supervised",
         name: "RDP (Robust Deep PCA)",
-        algorithmType: "semi-supervised",
-        dataType: ["tabular", "image"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Deep learning-based PCA model designed for robust anomaly detection in high-dimensional data.",
-        link: "https://arxiv.org/abs/1703.08383"
+        description: "Combines deep learning with PCA to create robust representations of data for detecting anomalies in noisy or high-dimensional datasets.",
+        useCases: ["Anomaly detection in noisy datasets", "Financial fraud detection"],
+        link: "https://arxiv.org/abs/2208.01998",
+        citation: "Hong-Lan Botterman, Julien Roussel, Thomas Morzadec, Ali Jabbari, Nicolas Brunel. Robust PCA for Anomaly Detection and Data Imputation in Seasonal Time Series."
     },
     {
-        type: "algorithm",
-        name: "HBOS (Histogram-based Outlier Score)",
-        algorithmType: "unsupervised",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Anomaly detection method that assumes independence between features and calculates outlier scores using histograms.",
-        link: "https://ieeexplore.ieee.org/document/6085272"
+        category: "Semi-supervised",
+        name: "SO-GAAL (Single Objective Generative Adversarial Active Learning)",
+        description: "Generates anomalies using GANs and uses active learning to detect real anomalies.",
+        useCases: ["Image anomaly detection", "Fraud detection"],
+        link: "https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8668550",
+        citation: "Liu, F. T., Ting, K. M., & Zhou, Z.-H. (2019). Generative adversarial active learning for anomaly detection."
     },
     {
-        type: "dataset",
-        name: "Abalone",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Predicts the age of abalone from physical measurements (~4.29% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Abalone"
+        category: "Semi-supervised",
+        name: "FEAWAD (Feature Engineering and Weak Anomaly Detection)",
+        description: "Uses feature engineering combined with weak supervision to detect anomalies, typically in noisy or complex datasets.",
+        useCases: ["Fraud detection", "Sensor data anomaly detection"],
+        link: "https://arxiv.org/abs/2105.10500",
+        citation: "Yingjie Zhou, Xucheng Song, Yanru Zhang, Fanxing Liu, Ce Zhu, Lingqiao Liu. Feature encoding with autoencoders for weakly supervised anomaly detection."
+    },
+
+    // Supervised Anomaly Detection Algorithms
+    {
+        category: "Supervised",
+        name: "XGBoost",
+        description: "A scalable, efficient gradient boosting method used for classification and regression, applied to anomaly detection as a binary classification problem.",
+        useCases: ["Credit card fraud detection", "Financial anomaly detection"],
+        link: "https://dl.acm.org/doi/10.1145/2939672.2939785",
+        citation: "Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system."
     },
     {
-        type: "dataset",
-        name: "Glass Identification",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "low",
-        description: "Dataset used for glass type classification (~4.49% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Glass+Identification"
+        category: "Supervised",
+        name: "LightGBM",
+        description: "A highly efficient gradient boosting framework optimized for large datasets and faster training.",
+        useCases: ["Large-scale anomaly detection", "Fraud detection"],
+        link: "https://dl.acm.org/doi/10.5555/3294996.3295074",
+        citation: "Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q., & Liu, T.-Y. (2017). LightGBM: A highly efficient gradient boosting decision tree."
     },
     {
-        type: "dataset",
-        name: "Vehicle Silhouettes",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Vehicle silhouette classification dataset (~50% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Vehicle+Silhouettes)"
+        category: "Supervised",
+        name: "CatBoost",
+        description: "Gradient boosting method designed to handle categorical features efficiently, often used for classification tasks in anomaly detection.",
+        useCases: ["Fraud detection", "Customer churn prediction"],
+        link: "https://arxiv.org/abs/1706.09516",
+        citation: "Dorogush, A. V., Ershov, V., & Gulin, A. (2018). CatBoost: Gradient boosting with categorical features support."
     },
     {
-        type: "dataset",
-        name: "Yeast",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Yeast gene regulation dataset for anomaly detection (~28.9% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Yeast"
+        category: "Supervised",
+        name: "Random Forest",
+        description: "An ensemble method that combines multiple decision trees to improve classification accuracy.",
+        useCases: ["Financial fraud detection", "Healthcare anomaly detection"],
+        link: "https://doi.org/10.1023/A:1010933404324",
+        citation: "Breiman, L. (2001). Random forests."
     },
     {
-        type: "dataset",
-        name: "Vertebral Column",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Vertebral column dataset for classifying orthopedic conditions (~23% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Vertebral+Column"
+        category: "Supervised",
+        name: "Multilayer Perceptron (MLP)",
+        description: "A type of feedforward artificial neural network used for classification tasks, including anomaly detection.",
+        useCases: ["Credit scoring", "Fraud detection"],
+        link: "https://www.semanticscholar.org/paper/Learning-representations-by-back-propagating-errors-Rumelhart-Hinton/052b1d8ce63b07fec3de9dbb583772d860b7c769",
+        citation: "Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors."
     },
     {
-        type: "dataset",
-        name: "Forest Cover Type",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Predicts forest cover type from cartographic variables (~0.96% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/covertype"
+        category: "Supervised",
+        name: "ResNet",
+        description: "A deep neural network with residual connections, making it easier to train deep networks, commonly used in image-based anomaly detection.",
+        useCases: ["Image anomaly detection", "Medical imaging"],
+        link: "https://doi.org/10.1109/CVPR.2016.90",
+        citation: "He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep residual learning for image recognition."
     },
     {
-        type: "dataset",
-        name: "Cardiotocography",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Fetal health classification from cardiotocograms (~22% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Cardiotocography"
+        category: "Supervised",
+        name: "FTTransformer",
+        description: "A transformer-based model designed for tabular data, used for supervised anomaly detection in high-dimensional datasets.",
+        useCases: ["Financial anomaly detection", "Sensor data analysis"],
+        link: "https://arxiv.org/abs/2106.11959",
+        citation: "Gorishniy, Y., Rubachev, I., Khrulkov, V., & Babenko, A. (2021). Revisiting deep learning models for tabular data."
     },
     {
-        type: "dataset",
-        name: "Steel Plates Faults",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Dataset for classifying faults in steel plates (~6.45% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Steel+Plates+Faults"
+        category: "Supervised",
+        name: "Naive Bayes",
+        description: "A probabilistic classifier that uses Bayes’ theorem with strong independence assumptions between features.",
+        useCases: ["Text anomaly detection", "Fraud detection"],
+        link: "https://doi.org/10.1023/A:1007413511361",
+        citation: "Domingos, P., & Pazzani, M. (1997). On the optimality of the simple Bayesian classifier under zero-one loss."
+    },
+    {
+        category: "Supervised",
+        name: "Logistic Regression",
+        description: "A statistical model used for binary classification problems, including anomaly detection.",
+        useCases: ["Financial fraud detection", "Healthcare anomaly detection"],
+        link: "https://doi.org/10.1111/j.2517-6161.1958.tb00292.x",
+        citation: "Cox, D. R. (1958). The regression analysis of binary sequences."
     },
     
     // Datasets from datasets.md
+        // 1. Public Benchmark Datasets
     {
-        type: "dataset",
-        name: "KDDCup99",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "medium",
-        description: "Network intrusion detection dataset used to identify abnormal network traffic (~3.92% anomalies).",
-        link: "https://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html"
-    },
-    {
-        type: "dataset",
-        name: "MNIST",
-        dataType: ["image"],
-        size: "large",
-        anomalyRatio: "low",
-        description: "A large dataset of handwritten digits, used for image-based anomaly detection (~1% anomalies).",
-        link: "https://yann.lecun.com/exdb/mnist/"
-    },
-    {
-        type: "dataset",
-        name: "Arrhythmia",
-        dataType: ["tabular"],
-        size: "medium",
-        anomalyRatio: "medium",
-        description: "Healthcare dataset for detecting cardiac arrhythmias (~15% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/arrhythmia"
-    },
-    {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Annthyroid",
         dataType: ["tabular"],
         size: "medium",
@@ -402,25 +261,43 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Thyroid+Disease"
     },
     {
-        type: "dataset",
-        name: "Spambase",
+        category: "Public Benchmark Datasets",
+        name: "Arrhythmia",
         dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "high",
-        description: "Email spam detection dataset, used for classifying spam emails (~39.4% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/spambase"
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Cardiac arrhythmia detection (~15% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/arrhythmia"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
+        name: "Cardiotocography",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Fetal health classification (~22% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/cardiotocography"
+    },
+    {
+        category: "Public Benchmark Datasets",
+        name: "KDDCup99",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Network intrusion detection dataset (~3.92% anomalies).",
+        link: "https://kdd.ics.uci.edu/databases/kddcup99/kddcup99.html"
+    },
+    {
+        category: "Public Benchmark Datasets",
         name: "Satellite",
         dataType: ["tabular"],
         size: "large",
         anomalyRatio: "medium",
-        description: "Remote sensing dataset for satellite image classification (~31% anomalies).",
+        description: "Satellite image classification (~31% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Landsat+Satellite)"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Shuttle",
         dataType: ["tabular"],
         size: "large",
@@ -429,25 +306,43 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Shuttle)"
     },
     {
-        type: "dataset",
-        name: "Musk",
+        category: "Public Benchmark Datasets",
+        name: "Lymphography",
         dataType: ["tabular"],
         size: "medium",
         anomalyRatio: "medium",
-        description: "Dataset used to detect whether a molecule is 'musky' (~3.17% anomalies).",
+        description: "Medical dataset used in anomaly detection.",
+        link: "https://archive.ics.uci.edu/ml/datasets/Lymphography"
+    },
+    {
+        category: "Public Benchmark Datasets",
+        name: "Pendigits",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Handwritten digit dataset (~2.27% anomalies).",
+        link: "https://archive.ics.uci.edu/dataset/81/pen+based+recognition+of+handwritten+digits"
+    },
+    {
+        category: "Public Benchmark Datasets",
+        name: "Musk",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "low",
+        description: "Detects if a molecule is 'musky' (~3.17% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Musk+(Version+2)"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Mammography",
         dataType: ["tabular"],
         size: "large",
         anomalyRatio: "low",
-        description: "Breast cancer detection dataset (~2.32% anomalies).",
+        description: "Breast cancer detection (~2.32% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Mammographic+Mass"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Breastw",
         dataType: ["tabular"],
         size: "large",
@@ -456,16 +351,16 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Pima",
         dataType: ["tabular"],
         size: "medium",
         anomalyRatio: "medium",
-        description: "Diabetes detection dataset (~35% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Pima+Indians+Diabetes"
+        description: "Diabetes detection (~35% anomalies).",
+        link: "https://www.dbs.ifi.lmu.de/research/outlier-evaluation/DAMI/semantic/Pima/Pima_35.html"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Ionosphere",
         dataType: ["tabular"],
         size: "medium",
@@ -474,7 +369,7 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Ionosphere"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Letter",
         dataType: ["tabular"],
         size: "large",
@@ -483,7 +378,7 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Letter+Recognition"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Wilt",
         dataType: ["tabular"],
         size: "medium",
@@ -492,7 +387,16 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Wilt"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
+        name: "Thyroid",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Thyroid disease detection (~7.41% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Thyroid+Disease"
+    },
+    {
+        category: "Public Benchmark Datasets",
         name: "Pageblocks",
         dataType: ["tabular"],
         size: "medium",
@@ -501,16 +405,16 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Page+Blocks+Classification"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Heart",
         dataType: ["tabular"],
         size: "medium",
         anomalyRatio: "high",
-        description: "Heart disease detection dataset (~44% anomalies).",
+        description: "Heart disease detection (~44% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Heart+Disease"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "InternetAds",
         dataType: ["tabular"],
         size: "large",
@@ -519,16 +423,7 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Internet+Advertisements"
     },
     {
-        type: "dataset",
-        name: "Penbased",
-        dataType: ["tabular"],
-        size: "large",
-        anomalyRatio: "low",
-        description: "Handwritten pen digit dataset (~6.59% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Pen-Based+Recognition+of+Handwritten+Digits"
-    },
-    {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Waveform",
         dataType: ["tabular"],
         size: "large",
@@ -537,7 +432,7 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Waveform+Database+Generator+(Version+2)"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Wine",
         dataType: ["tabular"],
         size: "medium",
@@ -546,7 +441,7 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Wine"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Optdigits",
         dataType: ["tabular"],
         size: "large",
@@ -555,7 +450,7 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Glass",
         dataType: ["tabular"],
         size: "medium",
@@ -564,51 +459,212 @@ const data = [
         link: "https://archive.ics.uci.edu/ml/datasets/Glass+Identification"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Vehicle",
         dataType: ["tabular"],
         size: "medium",
-        anomalyRatio: "medium",
+        anomalyRatio: "high",
         description: "Vehicle classification dataset (~50% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Statlog+(Vehicle+Silhouettes)"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Vowels",
         dataType: ["tabular"],
         size: "medium",
         anomalyRatio: "low",
         description: "Vowel classification dataset (~3.63% anomalies).",
-        link: "https://archive.ics.uci.edu/ml/datasets/Connectionist+Bench+%28Vowel+Recognition+-+Deterding+Data%29"
+        link: "https://www.openml.org/search?type=data&sort=runs&id=307&status=active"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Vertebral",
         dataType: ["tabular"],
         size: "medium",
         anomalyRatio: "medium",
-        description: "Vertebral column dataset (~23% anomalies).",
+        description: "Vertebral column data (~23% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Vertebral+Column"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
         name: "Yeast",
         dataType: ["tabular"],
         size: "large",
         anomalyRatio: "medium",
-        description: "Yeast cell-cycle regulation dataset (~28.9% anomalies).",
+        description: "Yeast cell-cycle regulation (~28.9% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Yeast"
     },
     {
-        type: "dataset",
+        category: "Public Benchmark Datasets",
+        name: "Spambase",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Email spam classification (~39.4% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/spambase"
+    },
+    {
+        category: "Public Benchmark Datasets",
         name: "Abalone",
         dataType: ["tabular"],
         size: "medium",
         anomalyRatio: "low",
         description: "Predicts abalone age (~4.29% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Abalone"
+    },
+    {
+        category: "Public Benchmark Datasets",
+        name: "Thyroid-Sick",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Variant of thyroid dataset for detecting sickness (~7.4% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Thyroid+Disease"
+    },
+    {
+        category: "Public Benchmark Datasets",
+        name: "Breast-Cancer",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Variant of the breast cancer dataset (~33% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)"
+    },
+    {
+        category: "Public Benchmark Datasets",
+        name: "Ecoli",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Protein localization dataset (~16% anomalies).",
+        link: "https://archive.ics.uci.edu/ml/datasets/Ecoli"
+    },
+
+    // 2. Synthetic Datasets
+    {
+        category: "Synthetic Datasets",
+        name: "Synthetic Big Dataset for Anomaly Detection - Kaggle",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Contains 2M rows for anomaly detection across various income and job scenarios.",
+        link: "https://www.kaggle.com/datasets/elouataouiwidad/synthetic-bigdataset-anomalydetection"
+    },
+    {
+        category: "Synthetic Datasets",
+        name: "Synthetic Financial Datasets for Fraud Detection - Kaggle",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Generated by the PaySim mobile money simulator for financial anomaly detection.",
+        link: "https://www.kaggle.com/datasets/ealaxi/paysim1"
+    },
+    {
+        category: "Synthetic Datasets",
+        name: "GitHub Repository",
+        dataType: ["time-series"],
+        size: "large",
+        anomalyRatio: "varied",
+        description: "Provides links to over 250 public time series datasets for anomaly detection.",
+        link: "https://github.com/elisejiuqizhang/TS-AD-Datasets"
+    },
+
+    // 3. Complex CV/NLP Datasets
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "CIFAR-10",
+        dataType: ["image"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Image classification dataset modified for anomaly detection.",
+        link: "https://www.cs.toronto.edu/~kriz/cifar.html"
+    },
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "MNIST",
+        dataType: ["image"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Handwritten digit dataset modified for anomaly detection.",
+        link: "https://yann.lecun.com/exdb/mnist/"
+    },
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "Fashion-MNIST",
+        dataType: ["image"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Fashion articles dataset modified for anomaly detection.",
+        link: "https://github.com/zalandoresearch/fashion-mnist"
+    },
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "20 Newsgroups",
+        dataType: ["text"],
+        size: "medium",
+        anomalyRatio: "medium",
+        description: "Text classification dataset modified by injecting anomalies.",
+        link: "http://qwone.com/~jason/20Newsgroups/"
+    },
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "Reuters-21578",
+        dataType: ["text"],
+        size: "large",
+        anomalyRatio: "medium",
+        description: "Text classification dataset for document classification.",
+        link: "https://kdd.ics.uci.edu/databases/reuters21578/reuters21578.html"
+    },
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "GTSRB (German Traffic Sign Recognition Benchmark)",
+        dataType: ["image"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Traffic sign image recognition dataset modified for anomaly detection.",
+        link: "https://benchmark.ini.rub.de/gtsrb_dataset.html"
+    },
+    {
+        category: "Complex CV/NLP Datasets",
+        name: "SVHN (Street View House Numbers)",
+        dataType: ["image"],
+        size: "large",
+        anomalyRatio: "low",
+        description: "Street number recognition dataset modified for anomaly detection.",
+        link: "http://ufldl.stanford.edu/housenumbers/"
+    },
+
+    // 4. Imbalanced Datasets
+    {
+        category: "Imbalanced Datasets",
+        name: "Fraud Detection (Credit Card)",
+        dataType: ["tabular"],
+        size: "large",
+        anomalyRatio: "high",
+        description: "Financial transaction dataset for detecting credit card fraud (highly imbalanced).",
+        link: "https://www.kaggle.com/mlg-ulb/creditcardfraud"
+    },
+
+    // 5. Noisy/Corrupted Datasets
+    {
+        category: "Noisy/Corrupted Datasets",
+        name: "SoftPatch: Unsupervised Anomaly Detection with Noisy Data",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "high",
+        description: "A memory-based method to denoise data at the patch level for anomaly detection.",
+        link: "https://arxiv.org/html/2403.14233v1"
+    },
+    {
+        category: "Noisy/Corrupted Datasets",
+        name: "Robust Anomaly Detection on Unreliable Data",
+        dataType: ["tabular"],
+        size: "medium",
+        anomalyRatio: "high",
+        description: "Discusses robust anomaly detection on datasets with noisy labels and unreliable data.",
+        link: "https://hal.science/hal-02056558/document"
     }
-    // Add more datasets if needed...
+    
 ];
 
 function filterResults() {
