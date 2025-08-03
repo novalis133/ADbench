@@ -1,6 +1,5 @@
 # Algorithm and Dataset Selector
 
-![Algorithm Selector Banner](https://source.unsplash.com/800x200/?machine-learning,anomaly-detection)  
 *Interactive web tool for selecting anomaly detection algorithms and datasets based on user-defined criteria.*
 
 This repository contains a web-based application designed to help researchers and practitioners select the best anomaly detection algorithms and datasets based on criteria such as data type, algorithm type, dataset size, and anomaly ratio. Built with HTML, JavaScript, and Tailwind CSS, the tool filters a curated list of algorithms and datasets, providing detailed descriptions, use cases, and references. As a Senior AI & Machine Learning Engineer, this project demonstrates my expertise in creating user-friendly tools for AI-driven decision-making, complementing my work in neuromorphic computing and reinforcement learning.
