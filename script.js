@@ -1,9 +1,5 @@
-// Full data from both `algorithms.md` and `datasets.md`
-// Data for algorithms and datasets is structured below
+// Data for algorithms and datasets (unchanged from original)
 const algorithms = [
-    // Algorithms from algorithms.md
-    // 1. Unsupervised Anomaly Detection Algorithms
-    
     {
         category: "Unsupervised",
         name: "Isolation Forest (IForest)",
@@ -116,8 +112,6 @@ const algorithms = [
         link: "https://dl.acm.org/doi/10.1145/1970392.1970395",
         citation: "Candès, E. J., Li, X., Ma, Y., & Wright, J. (2010). Robust principal component analysis."
     },
-
-    // Semi-supervised Anomaly Detection Algorithms
     {
         category: "Semi-supervised",
         name: "DeepSAD (Deep Semi-supervised Anomaly Detection)",
@@ -174,8 +168,6 @@ const algorithms = [
         link: "https://arxiv.org/abs/2105.10500",
         citation: "Yingjie Zhou, Xucheng Song, Yanru Zhang, Fanxing Liu, Ce Zhu, Lingqiao Liu. Feature encoding with autoencoders for weakly supervised anomaly detection."
     },
-
-    // Supervised Anomaly Detection Algorithms
     {
         category: "Supervised",
         name: "XGBoost",
@@ -249,10 +241,8 @@ const algorithms = [
         citation: "Cox, D. R. (1958). The regression analysis of binary sequences."
     },
 ];
-    
+
 const datasets = [
-    // Datasets from datasets.md
-        // 1. Public Benchmark Datasets
     {
         category: "Public Benchmark Datasets",
         name: "Annthyroid",
@@ -541,8 +531,6 @@ const datasets = [
         description: "Protein localization dataset (~16% anomalies).",
         link: "https://archive.ics.uci.edu/ml/datasets/Ecoli"
     },
-
-    // 2. Synthetic Datasets
     {
         category: "Synthetic Datasets",
         name: "Synthetic Big Dataset for Anomaly Detection - Kaggle",
@@ -570,8 +558,6 @@ const datasets = [
         description: "Provides links to over 250 public time series datasets for anomaly detection.",
         link: "https://github.com/elisejiuqizhang/TS-AD-Datasets"
     },
-
-    // 3. Complex CV/NLP Datasets
     {
         category: "Complex CV/NLP Datasets",
         name: "CIFAR-10",
@@ -635,8 +621,6 @@ const datasets = [
         description: "Street number recognition dataset modified for anomaly detection.",
         link: "http://ufldl.stanford.edu/housenumbers/"
     },
-
-    // 4. Imbalanced Datasets
     {
         category: "Imbalanced Datasets",
         name: "Fraud Detection (Credit Card)",
@@ -646,8 +630,6 @@ const datasets = [
         description: "Financial transaction dataset for detecting credit card fraud (highly imbalanced).",
         link: "https://www.kaggle.com/mlg-ulb/creditcardfraud"
     },
-
-    // 5. Noisy/Corrupted Datasets
     {
         category: "Noisy/Corrupted Datasets",
         name: "SoftPatch: Unsupervised Anomaly Detection with Noisy Data",
@@ -666,71 +648,172 @@ const datasets = [
         description: "Discusses robust anomaly detection on datasets with noisy labels and unreliable data.",
         link: "https://hal.science/hal-02056558/document"
     }
-    
 ];
 
-function filterResults() {
-    const algorithmResults = document.getElementById('algorithm-results');
-    const datasetResults = document.getElementById('dataset-results');
-    algorithmResults.innerHTML = ''; // Clear previous algorithm results
-    datasetResults.innerHTML = ''; // Clear previous dataset results
+// Debounce function to limit rapid filter calls
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 
-    // Get filter values
-    const isTabular = document.getElementById("tabular").checked;
-    const isTimeSeries = document.getElementById("time-series").checked;
-    const isImage = document.getElementById("image").checked;
-    const isText = document.getElementById("text").checked;
+// Function to get filter values
+function getFilterValues() {
+    return {
+        dataTypes: {
+            tabular: document.getElementById("tabular").checked,
+            timeSeries: document.getElementById("time-series").checked,
+            image: document.getElementById("image").checked,
+            text: document.getElementById("text").checked
+        },
+        algorithmTypes: {
+            unsupervised: document.getElementById("unsupervised").checked,
+            semiSupervised: document.getElementById("semi-supervised").checked,
+            supervised: document.getElementById("supervised").checked
+        },
+        size: document.querySelector('input[name="size"]:checked')?.id || null,
+        anomaly: document.querySelector('input[name="anomaly"]:checked')?.id.split("-")[0] || null
+    };
+}
 
-    const isUnsupervised = document.getElementById("unsupervised").checked;
-    const isSemiSupervised = document.getElementById("semi-supervised").checked;
-    const isSupervised = document.getElementById("supervised").checked;
+// Function to render results
+function renderResults(container, items, type) {
+    const noResults = container.querySelector('.no-results');
+    const loading = container.querySelector('.loading');
+    
+    // Clear previous content
+    container.innerHTML = '';
+    container.appendChild(noResults);
+    container.appendChild(loading);
 
-    const sizeSelected = document.querySelector('input[name="size"]:checked');
-    const anomalySelected = document.querySelector('input[name="anomaly"]:checked');
+    if (items.length === 0) {
+        noResults.style.display = 'block';
+        loading.style.display = 'none';
+        return;
+    }
 
-    // Filter algorithms based on category
-    const filteredAlgorithms = algorithms.filter(alg => {
-        return (
-            (isUnsupervised && alg.category === "Unsupervised") ||
-            (isSemiSupervised && alg.category === "Semi-supervised") ||
-            (isSupervised && alg.category === "Supervised")
-        );
-    });
+    noResults.style.display = 'none';
+    loading.style.display = 'none';
 
-    // Filter datasets based on dataType, size, and anomaly ratio
-    const filteredDatasets = datasets.filter(dataset => {
-        const matchesDataType =
-            (isTabular && dataset.dataType.includes("tabular")) ||
-            (isTimeSeries && dataset.dataType.includes("time-series")) ||
-            (isImage && dataset.dataType.includes("image")) ||
-            (isText && dataset.dataType.includes("text"));
-
-        const matchesSize = !sizeSelected || dataset.size === sizeSelected.id;
-        const matchesAnomaly = !anomalySelected || dataset.anomalyRatio === anomalySelected.id.split("-")[0];
-
-        return matchesDataType && matchesSize && matchesAnomaly;
-    });
-
-    // Display algorithms in the algorithm-results section
-    filteredAlgorithms.forEach(alg => {
-        const div = document.createElement("div");
-        div.classList.add("result");
-        div.style.display = "block";
-        div.innerHTML = `<h4>${alg.name}</h4>
-                        <p>${alg.description}</p>
-                        <p><strong>Use Cases:</strong> ${alg.useCases.join(", ")}</p>
-                        <a href="${alg.link}" target="_blank">Learn more</a>`;
-        algorithmResults.appendChild(div);
-    });
-
-    // Display datasets in the dataset-results section
-    filteredDatasets.forEach(dataset => {
-        const div = document.createElement("div");
-        div.classList.add("result");
-        div.style.display = "block";
-        div.innerHTML = `<h4>${dataset.name}</h4>
-                        <p>${dataset.description}</p>
-                        <a href="${dataset.link}" target="_blank">Learn more</a>`;
-        datasetResults.appendChild(div);
+    items.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('result-card');
+        div.setAttribute('role', 'article');
+        if (type === 'algorithm') {
+            div.innerHTML = `
+                <h4 class="text-lg font-semibold text-blue-600">${item.name}</h4>
+                <p class="text-gray-700">${item.description}</p>
+                <p class="text-gray-600"><strong>Use Cases:</strong> ${item.useCases.join(', ')}</p>
+                <p class="text-gray-600"><strong>Citation:</strong> ${item.citation}</p>
+                <a href="${item.link}" target="_blank" class="text-blue-600 hover:underline" aria-label="Learn more about ${item.name}">Learn more</a>
+            `;
+        } else {
+            div.innerHTML = `
+                <h4 class="text-lg font-semibold text-blue-600">${item.name}</h4>
+                <p class="text-gray-700">${item.description}</p>
+                <p class="text-gray-600"><strong>Data Type:</strong> ${item.dataType.join(', ')}</p>
+                <p class="text-gray-600"><strong>Size:</strong> ${item.size.charAt(0).toUpperCase() + item.size.slice(1)}</p>
+                <p class="text-gray-600"><strong>Anomaly Ratio:</strong> ${item.anomalyRatio.charAt(0).toUpperCase() + item.anomalyRatio.slice(1)}</p>
+                <a href="${item.link}" target="_blank" class="text-blue-600 hover:underline" aria-label="Learn more about ${item.name}">Learn more</a>
+            `;
+        }
+        container.appendChild(div);
     });
 }
+
+// Main filter function
+function filterResults() {
+    try {
+        const algorithmResults = document.getElementById('algorithm-results');
+        const datasetResults = document.getElementById('dataset-results');
+        const algorithmNoResults = algorithmResults.querySelector('.no-results');
+        const datasetNoResults = datasetResults.querySelector('.no-results');
+        const algorithmLoading = algorithmResults.querySelector('.loading');
+        const datasetLoading = datasetResults.querySelector('.loading');
+
+        // Show loading state
+        algorithmResults.innerHTML = '';
+        datasetResults.innerHTML = '';
+        algorithmResults.appendChild(algorithmNoResults);
+        datasetResults.appendChild(datasetNoResults);
+        algorithmResults.appendChild(algorithmLoading);
+        datasetResults.appendChild(datasetLoading);
+        algorithmNoResults.style.display = 'none';
+        datasetNoResults.style.display = 'none';
+        algorithmLoading.style.display = 'block';
+        datasetLoading.style.display = 'block';
+
+        const filters = getFilterValues();
+
+        // Validate filters
+        const hasDataType = Object.values(filters.dataTypes).some(v => v);
+        const hasAlgorithmType = Object.values(filters.algorithmTypes).some(v => v);
+        if (!hasDataType && !hasAlgorithmType && !filters.size && !filters.anomaly) {
+            algorithmNoResults.textContent = 'Please select at least one filter to see results.';
+            datasetNoResults.textContent = 'Please select at least one filter to see results.';
+            algorithmNoResults.style.display = 'block';
+            datasetNoResults.style.display = 'block';
+            algorithmLoading.style.display = 'none';
+            datasetLoading.style.display = 'none';
+            return;
+        }
+
+        // Filter algorithms
+        const filteredAlgorithms = algorithms.filter(alg => {
+            return (
+                (filters.algorithmTypes.unsupervised && alg.category === "Unsupervised") ||
+                (filters.algorithmTypes.semiSupervised && alg.category === "Semi-supervised") ||
+                (filters.algorithmTypes.supervised && alg.category === "Supervised")
+            );
+        });
+
+        // Filter datasets
+        const filteredDatasets = datasets.filter(dataset => {
+            const matchesDataType =
+                (!hasDataType) ||
+                (filters.dataTypes.tabular && dataset.dataType.includes("tabular")) ||
+                (filters.dataTypes.timeSeries && dataset.dataType.includes("time-series")) ||
+                (filters.dataTypes.image && dataset.dataType.includes("image")) ||
+                (filters.dataTypes.text && dataset.dataType.includes("text"));
+
+            const matchesSize = !filters.size || dataset.size === filters.size;
+            const matchesAnomaly = !filters.anomaly || dataset.anomalyRatio === filters.anomaly;
+
+            return matchesDataType && matchesSize && matchesAnomaly;
+        });
+
+        // Simulate async loading (replace with actual async logic if needed)
+        setTimeout(() => {
+            renderResults(algorithmResults, filteredAlgorithms, 'algorithm');
+            renderResults(datasetResults, filteredDatasets, 'dataset');
+        }, 500);
+    } catch (error) {
+        console.error('Error filtering results:', error);
+        const algorithmResults = document.getElementById('algorithm-results');
+        const datasetResults = document.getElementById('dataset-results');
+        algorithmResults.innerHTML = '<p class="text-red-600">An error occurred while filtering algorithms. Please try again.</p>';
+        datasetResults.innerHTML = '<p class="text-red-600">An error occurred while filtering datasets. Please try again.</p>';
+    }
+}
+
+// Debounced filter function
+const debouncedFilterResults = debounce(filterResults, 300);
+
+// Attach event listeners to all inputs
+document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(input => {
+    input.addEventListener('change', debouncedFilterResults);
+});
+
+// Initialize with no results
+document.addEventListener('DOMContentLoaded', () => {
+    const algorithmResults = document.getElementById('algorithm-results');
+    const datasetResults = document.getElementById('dataset-results');
+    algorithmResults.querySelector('.no-results').style.display = 'block';
+    datasetResults.querySelector('.no-results').style.display = 'block';
+});
